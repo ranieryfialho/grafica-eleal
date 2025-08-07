@@ -30,6 +30,7 @@ const estadosAtendidos = [
 ];
 
 const mapStyles = [
+    // Mantive os estilos do mapa originais, pois o contraste com o fundo verde fica bom.
     { elementType: "geometry", stylers: [{ color: "#f5f5f5" }] },
     { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
     { elementType: "labels.text.fill", stylers: [{ color: "#616161" }] },
@@ -57,13 +58,16 @@ export function CoverageMapSection() {
   };
 
   return (
-    <section id="cobertura" className="py-16 sm:py-20 lg:py-24 textura-marca-dagua">
+    // --- MUDANÇAS APLICADAS AQUI ---
+    <section id="cobertura" className="py-16 sm:py-20 lg:py-24 bg-foreground">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Cobertura Nacional</h2>
-          <h3 className="text-4xl sm:text-5xl font-extrabold text-foreground mt-2">Atendemos Todo o Brasil</h3>
-          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-            Com orgulho, atendemos clientes nos estados abaixo. Clique nos marcadores para ver os detalhes.
+          {/* Cor do título principal alterada para 'text-background' (branco) */}
+          <h3 className="text-4xl sm:text-5xl font-extrabold text-background mt-2">Atendemos Todo o Brasil</h3>
+          {/* Cor do parágrafo alterada para um branco com transparência */}
+          <p className="mt-4 text-lg text-white/70 max-w-3xl mx-auto">
+            Com orgulho, atendemos clientes em todo país!
           </p>
         </div>
 
@@ -102,6 +106,7 @@ export function CoverageMapSection() {
                   onCloseClick={() => setActiveMarker(null)}
                 >
                   <div className="p-1">
+                    {/* O texto aqui dentro já usa a cor 'text-foreground', então ficará escuro no pop-up branco */}
                     <h4 className="font-bold text-foreground">{activeMarker.nome}</h4>
                   </div>
                 </InfoWindow>

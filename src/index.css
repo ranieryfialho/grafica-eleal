@@ -99,14 +99,7 @@
 
   .link-animado::after {
     @apply content-[''] absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-primary transition-transform duration-300 ease-out;
-    /* content-['']: Cria o elemento da linha.
-      absolute bottom-0 left-0: Posiciona a linha na base do link, à esquerda.
-      h-[2px] w-full: Define a altura e largura da linha.
-      origin-left: Faz a animação começar da esquerda.
-      scale-x-0: Começa com a linha "espremida" (invisível).
-      bg-primary: Usa a nossa cor verde principal.
-      transition-transform ...: Define a animação suave.
-    */
+
   }
 
   .link-animado:hover::after {
@@ -122,5 +115,34 @@
   .link-animado.active {
     @apply text-foreground;
     /* Deixa o texto do link ativo um pouco mais escuro */
+  }
+}
+
+@layer components {
+  .marquee-container {
+    /* Cria um efeito de fade nas laterais para que as logos apareçam e desapareçam suavemente */
+    -webkit-mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 15%, hsl(0 0% 0% / 1) 85%, hsl(0 0% 0% / 0));
+    mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 15%, hsl(0 0% 0% / 1) 85%, hsl(0 0% 0% / 0));
+  }
+
+  .marquee-content {
+    /* Aplica a animação de scroll que definimos abaixo */
+    animation: scroll 40s linear infinite;
+  }
+
+  /* Pausa a animação quando o mouse está sobre o carrossel */
+  .marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+  }
+
+  /* Define o movimento da animação */
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* Move o container para a esquerda até o final da primeira lista de logos */
+      transform: translateX(-50%);
+    }
   }
 }
