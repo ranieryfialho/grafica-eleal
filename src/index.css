@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define as variáveis de cores para o nosso tema */
+@layer base {
+
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 98 16% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 98 16% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 98 16% 11%;
+
+    --primary: 102 25% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 98 16% 11%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 75 52% 49%;
+    --accent-foreground: 98 16% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 75 52% 49%;
+
+    --radius: 0.5rem;
+  }
+
+  /* (dark mode) */
+  .dark {
+    --background: 98 16% 11%;
+    --foreground: 0 0% 98%;
+    --card: 98 16% 11%;
+    --card-foreground: 0 0% 98%;
+    --popover: 98 16% 11%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 102 19% 28%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 75 52% 49%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 75 52% 49%;
+  }
+}
+
+/* Aplica estilos base para o corpo da página */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv03", "cv04", "cv11";
+  }
+}
+
+.textura-verde {
+  background-color: hsl(var(--muted) / 0.6);
+  /* Ligeiramente mais escura que o branco */
+  color: hsl(var(--primary) / 0.03);
+  /* Verde primário com opacidade extremamente baixa */
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Group 4' fill='none' fill-rule='evenodd'%3E%3Cg id='x' fill='currentColor' fill-opacity='0.03'%3E%3Cpath d='M6 32L0 26 26 0l6 6zM6 12L0 18 18 0l6 6zM36 32l-6-6 6-6 6 6zM36 12l-6-6 6-6 6 6z'/%3E%3C/g%3E%3Cpath d='M12.5 16L14 12.5 3.5 23 2 24.5l11-11.5zM19 23.5l2.5-1.5L41 2l-1.5-2.5L19 23.5zM0 30.5L1.5 29 31 0l1.5 2.5L0 30.5zM39.5 38L41 36.5 11 6l-1.5 2.5L39.5 38zM34 41.5L32.5 40 2 7.5l1.5-2.5L34 41.5zM6 41.5L7.5 40 37 7.5l-1.5-2.5L6 41.5zM30 34.5L28.5 33 8 13.5l1.5-2.5L30 34.5z' fill='currentColor' fill-opacity='0.03'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.textura-marca-dagua {
+  background-color: hsl(var(--muted) / 0.4);
+
+  color: hsl(var(--primary) / 0.03);
+
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Group 4' fill='none' fill-rule='evenodd'%3E%3Cg id='x' fill='currentColor' fill-opacity='0.03'%3E%3Cpath d='M6 32L0 26 26 0l6 6zM6 12L0 18 18 0l6 6zM36 32l-6-6 6-6 6 6zM36 12l-6-6 6-6 6 6z'/%3E%3C/g%3E%3Cpath d='M12.5 16L14 12.5 3.5 23 2 24.5l11-11.5zM19 23.5l2.5-1.5L41 2l-1.5-2.5L19 23.5zM0 30.5L1.5 29 31 0l1.5 2.5L0 30.5zM39.5 38L41 36.5 11 6l-1.5 2.5L39.5 38zM34 41.5L32.5 40 2 7.5l1.5-2.5L34 41.5zM6 41.5L7.5 40 37 7.5l-1.5-2.5L6 41.5zM30 34.5L28.5 33 8 13.5l1.5-2.5L30 34.5z' fill='currentColor' fill-opacity='0.03'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Adicione este código ao final do seu arquivo src/index.css */
+
+@layer components {
+  .link-animado {
+    @apply relative overflow-hidden;
+    /* Necessário para o efeito funcionar */
+  }
+
+  .link-animado::after {
+    @apply content-[''] absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-primary transition-transform duration-300 ease-out;
+    /* content-['']: Cria o elemento da linha.
+      absolute bottom-0 left-0: Posiciona a linha na base do link, à esquerda.
+      h-[2px] w-full: Define a altura e largura da linha.
+      origin-left: Faz a animação começar da esquerda.
+      scale-x-0: Começa com a linha "espremida" (invisível).
+      bg-primary: Usa a nossa cor verde principal.
+      transition-transform ...: Define a animação suave.
+    */
+  }
+
+  .link-animado:hover::after {
+    @apply scale-x-100;
+    /* No hover, a linha se "estica" para 100% da largura. */
+  }
+
+  .link-animado.active::after {
+    @apply scale-x-100;
+    /* Força a linha a ter 100% da largura */
+  }
+
+  .link-animado.active {
+    @apply text-foreground;
+    /* Deixa o texto do link ativo um pouco mais escuro */
+  }
+}
