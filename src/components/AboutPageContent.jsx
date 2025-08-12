@@ -23,7 +23,7 @@ export function AboutPageContent() {
             </div>
             <div className="w-full aspect-square rounded-lg overflow-hidden shadow-lg">
               <img 
-                src={asset("/imagem-escolha.jpg")} 
+                src={asset("/francisca-leal.jpg")} 
                 alt="Ambiente da Gráfica Eleal"
                 className="w-full h-full object-cover" 
               />
