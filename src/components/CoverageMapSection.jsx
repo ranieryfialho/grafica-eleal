@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
-const estadosAtendidos = [
+// Dados de geolocalização dos estados
+const estadosGeo = [
   { sigla: 'AC', nome: 'Acre', pos: { lat: -9.0238, lng: -70.812 } },
   { sigla: 'AL', nome: 'Alagoas', pos: { lat: -9.71, lng: -36.78 } },
   { sigla: 'AM', nome: 'Amazonas', pos: { lat: -3.4168, lng: -65.8561 } },
@@ -29,8 +29,39 @@ const estadosAtendidos = [
   { sigla: 'TO', nome: 'Tocantins', pos: { lat: -10.1844, lng: -48.3336 } }
 ];
 
+// Dados do seu arquivo CSV, agora integrados no código
+const dadosProjetos = [
+  { UF: "CE", Quantidade: 13154 }, { UF: "MA", Quantidade: 470 },
+  { UF: "SP", Quantidade: 375 }, { UF: "PI", Quantidade: 184 },
+  { UF: "RN", Quantidade: 105 }, { UF: "PE", Quantidade: 69 },
+  { UF: "PA", Quantidade: 65 }, { UF: "PB", Quantidade: 63 },
+  { UF: "DF", Quantidade: 56 }, { UF: "RJ", Quantidade: 52 },
+  { UF: "BA", Quantidade: 36 }, { UF: "PR", Quantidade: 32 },
+  { UF: "TO", Quantidade: 27 }, { UF: "MG", Quantidade: 22 },
+  { UF: "ES", Quantidade: 14 }, { UF: "RS", Quantidade: 13 },
+  { UF: "GO", Quantidade: 12 }, { UF: "RO", Quantidade: 12 },
+  { UF: "AL", Quantidade: 10 }, { UF: "SC", Quantidade: 9 },
+  { UF: "SE", Quantidade: 8 }, { UF: "AM", Quantidade: 2 },
+  { UF: "AC", Quantidade: 1 }, { UF: "MT", Quantidade: 1 },
+  { UF: "MS", Quantidade: 1 }
+];
+
+// Unindo os dados
+const estadosComProjetos = estadosGeo.map(estado => {
+  const infoProjeto = dadosProjetos.find(p => p.UF.trim() === estado.sigla);
+  return {
+    ...estado,
+    quantidade: infoProjeto ? infoProjeto.Quantidade : 0,
+  };
+});
+
+// Função para calcular o tamanho do marcador no mapa
+const calcularEscala = (quantidade) => {
+  if (quantidade === 0) return 0; // Não mostra marcador se não houver projetos
+  return 5 + Math.log(quantidade + 1) * 1.2;
+};
+
 const mapStyles = [
-    // Mantive os estilos do mapa originais, pois o contraste com o fundo verde fica bom.
     { elementType: "geometry", stylers: [{ color: "#f5f5f5" }] },
     { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
     { elementType: "labels.text.fill", stylers: [{ color: "#616161" }] },
@@ -51,21 +82,12 @@ export function CoverageMapSection() {
     language: 'pt-BR'
   });
 
-  const [activeMarker, setActiveMarker] = useState(null);
-
-  const handleMarkerClick = (marker) => {
-    setActiveMarker(marker);
-  };
-
   return (
-    // --- MUDANÇAS APLICADAS AQUI ---
     <section id="cobertura" className="py-16 sm:py-20 lg:py-24 bg-foreground">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Cobertura Nacional</h2>
-          {/* Cor do título principal alterada para 'text-background' (branco) */}
           <h3 className="text-4xl sm:text-5xl font-extrabold text-background mt-2">Atendemos Todo o Brasil</h3>
-          {/* Cor do parágrafo alterada para um branco com transparência */}
           <p className="mt-4 text-lg text-white/70 max-w-3xl mx-auto">
             Com orgulho, atendemos clientes em todo país!
           </p>
@@ -81,36 +103,24 @@ export function CoverageMapSection() {
                 styles: mapStyles, 
                 streetViewControl: false, 
                 mapTypeControl: false, 
-                fullscreenControl: false 
+                fullscreenControl: false,
+                clickableIcons: false
               }}
             >
-              {estadosAtendidos.map((estado) => (
+              {estadosComProjetos.map((estado) => (
                 <Marker
                   key={estado.sigla}
                   position={estado.pos}
-                  onClick={() => handleMarkerClick(estado)}
+                  clickable={false}
                   icon={{
                     path: window.google.maps.SymbolPath.CIRCLE,
-                    scale: 8,
+                    scale: calcularEscala(estado.quantidade),
                     fillColor: "hsl(102 25% 40%)",
-                    fillOpacity: 0.9,
-                    strokeWeight: 1,
-                    strokeColor: "#ffffff"
+                    fillOpacity: 0.8,
+                    strokeWeight: 0
                   }}
                 />
               ))}
-
-              {activeMarker && (
-                <InfoWindow
-                  position={activeMarker.pos}
-                  onCloseClick={() => setActiveMarker(null)}
-                >
-                  <div className="p-1">
-                    {/* O texto aqui dentro já usa a cor 'text-foreground', então ficará escuro no pop-up branco */}
-                    <h4 className="font-bold text-foreground">{activeMarker.nome}</h4>
-                  </div>
-                </InfoWindow>
-              )}
             </GoogleMap>
           ) : (
             <div className="flex items-center justify-center h-full bg-muted">Carregando mapa...</div>
