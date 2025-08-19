@@ -43,13 +43,13 @@ export function Footer() {
                 (85) 3238-0150
             </p>
             <div className="flex space-x-4 pt-4">
-              <a href="#" className="bg-primary/20 p-2 rounded-full hover:bg-primary transition-colors">
+              <a href="https://www.instagram.com/graficaeeditoraeleal" className="bg-primary/20 p-2 rounded-full hover:bg-primary transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
               <a href="#" className="bg-primary/20 p-2 rounded-full hover:bg-primary transition-colors">
                 <Mail className="h-5 w-5" />
               </a>
-              <a href="#" className="bg-primary/20 p-2 rounded-full hover:bg-primary transition-colors">
+              <a href="tel:8532380150" className="bg-primary/20 p-2 rounded-full hover:bg-primary transition-colors">
                 <Phone className="h-5 w-5" />
               </a>
             </div>
@@ -96,7 +96,7 @@ export function Footer() {
       <div className="border-t border-primary/20 py-6">
         <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground text-center sm:text-left">
           <p>&copy; {currentYear} Eleal Gráfica & Editora. Todos os direitos reservados.</p>
-          <a href="https://rafiweb.com.br/" className="hover:text-primary mt-2 sm:mt-0">Rafi Web</a>
+          <a href="https://rafiweb.com.br/" className="hover:text-primary mt-2 sm:mt-0">Desenvolvido por Rafi Web</a>
         </div>
       </div>
     </footer>
