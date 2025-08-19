@@ -78,7 +78,7 @@ export function Footer() {
                 <Link 
                   to="/portfolio" 
                   key={index} 
-                  className="aspect-square overflow-hidden rounded-md" // <-- ALTERAÇÃO AQUI
+                  className="aspect-square overflow-hidden rounded-md"
                 >
                   <img 
                     src={asset(img.image)}
