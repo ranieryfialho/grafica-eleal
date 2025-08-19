@@ -75,7 +75,11 @@ export function Footer() {
             <h4 className="font-bold text-lg tracking-wider">Portfólio</h4>
             <div className="grid grid-cols-3 gap-2">
               {portfolioImages.map((img, index) => (
-                <Link to="/portfolio" key={index} className="overflow-hidden rounded-md">
+                <Link 
+                  to="/portfolio" 
+                  key={index} 
+                  className="aspect-square overflow-hidden rounded-md" // <-- ALTERAÇÃO AQUI
+                >
                   <img 
                     src={asset(img.image)}
                     alt={img.alt} 
@@ -92,7 +96,7 @@ export function Footer() {
       <div className="border-t border-primary/20 py-6">
         <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground text-center sm:text-left">
           <p>&copy; {currentYear} Eleal Gráfica & Editora. Todos os direitos reservados.</p>
-          <a href="#" className="hover:text-primary mt-2 sm:mt-0">Política de Privacidade</a>
+          <a href="https://rafiweb.com.br/" className="hover:text-primary mt-2 sm:mt-0">Rafi Web</a>
         </div>
       </div>
     </footer>
