@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import CountUp from "react-countup";
 import { asset } from "@/lib/utils/asset.js";
@@ -56,7 +57,7 @@ export function WhyChooseUsSection() {
 
             <div className="mt-10">
               <Button asChild size="lg">
-                <a href="#contato">Entre em Contato</a>
+                <Link to="/contato">Entre em Contato</Link>
               </Button>
             </div>
           </div>

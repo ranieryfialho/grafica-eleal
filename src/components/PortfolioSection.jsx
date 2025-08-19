@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"; // 1. Adicione a importação do Link
 import { Button } from "@/components/ui/button";
 import { asset } from "@/lib/utils/asset.js";
 
@@ -94,9 +95,10 @@ export function PortfolioSection() {
                     ))}
                 </div>
 
+                {/* --- ALTERAÇÃO AQUI --- */}
                 <div className="text-center mt-16">
                     <Button asChild variant="outline" size="lg" className="bg-background/90 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                        <a href="#contato">Peça o seu Orçamento</a>
+                        <Link to="/contato">Peça o seu Orçamento</Link>
                     </Button>
                 </div>
                 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Printer } from "lucide-react";
 
@@ -35,9 +36,10 @@ export function AboutSection() {
             <p className="mt-4 text-muted-foreground">
               Ao longo desses mais de 20 anos, nós estamos trabalhando incansavelmente para atender às necessidades e superar as expectativas daqueles que buscam nossos serviços.
             </p>
+
             <div className="mt-8">
               <Button asChild size="lg">
-                <a href="#contato">Conheça +</a>
+                <Link to="/sobre">Conheça +</Link>
               </Button>
             </div>
           </div>

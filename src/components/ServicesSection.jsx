@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardTitle } from "@/components/ui/card";
 import { FileText, Package, BookOpen } from "lucide-react"; 
 
 const services = [
@@ -53,7 +54,7 @@ export function ServicesSection({ mostrarIconeFlutuante = true }) {
 
         <div className="text-center mt-14">
             <Button asChild size="lg">
-                <a href="#contato">Entre em Contato</a>
+                <Link to="/contato">Entre em Contato</Link>
             </Button>
         </div>
       </div>
