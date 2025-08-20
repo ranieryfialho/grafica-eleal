@@ -28,7 +28,8 @@ export function ContactForm() {
 
   async function onSubmit(values) {
     try {
-      const endpoint = `${window.location.origin}/wp-json/grafica-eleal/v1/contact-form`;
+      // Usando o endpoint relativo, que é mais robusto
+      const endpoint = "/wp-json/grafica-eleal/v1/contact-form";
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -38,21 +39,21 @@ export function ContactForm() {
         body: JSON.stringify(values),
       });
 
-      if (!response.ok) {
-        throw new Error('A resposta da rede não foi OK');
-      }
-
       const result = await response.json();
 
-      if (result.success) {
-        toast.success("Mensagem enviada com sucesso!", {
-          description: "Entraremos em contato em breve. Obrigado!",
-        });
-        form.reset();
-      } else {
-        throw new Error(result.message || 'Ocorreu um erro no servidor.');
+      // Se a resposta da rede não for 'ok' (ex: status 500), joga um erro
+      if (!response.ok) {
+        throw new Error(result.message || 'A resposta da rede não foi OK');
       }
+
+      // Mostra o toast de sucesso e reseta o formulário
+      toast.success("Mensagem enviada com sucesso!", {
+        description: "Entraremos em contato em breve. Obrigado!",
+      });
+      form.reset();
+
     } catch (error) {
+      // Em caso de qualquer erro, mostra o toast de falha
       console.error("Erro ao enviar formulário:", error);
       toast.error("Falha ao enviar mensagem.", {
         description: "Por favor, tente novamente mais tarde ou use um dos nossos outros canais de contato.",
@@ -70,7 +71,7 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Nome</FormLabel>
               <FormControl>
-                <Input placeholder="Seu nome completo" {...field} />
+                <Input placeholder="Seu nome" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -83,7 +84,7 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>E-mail</FormLabel>
               <FormControl>
-                <Input placeholder="seu.email@exemplo.com" {...field} />
+                <Input placeholder="Seu E-mail" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -115,7 +116,14 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" size="lg" className="w-full">Enviar Mensagem</Button>
+        <Button 
+          type="submit" 
+          size="lg" 
+          className="w-full"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
+        </Button>
       </form>
     </Form>
   );

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
 import { FileText, Package, BookOpen } from "lucide-react"; 
+import { asset } from "@/lib/utils/asset.js";
 
 const services = [
   {
@@ -25,8 +26,12 @@ export function ServicesSection({ mostrarIconeFlutuante = true }) {
   return (
     <section id="servicos" className="relative py-16 sm:py-20 lg:py-24 textura-verde">
       {mostrarIconeFlutuante && (
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-card p-4 rounded-full shadow-lg border">
-            <FileText className="h-8 w-8 text-foreground" />
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-card p-2 rounded-full shadow-lg border overflow-hidden">
+            <img 
+              src={asset('/logo.png')} 
+              alt="Logomarca da Gráfica Eleal" 
+              className="h-12 w-auto"
+            />
         </div>
       )}
 

@@ -34,7 +34,7 @@ export function Contato() {
                   <Mail className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-xl font-semibold">Nosso E-mail</h4>
-                    <p className="text-muted-foreground">contato@graficaeleal.com.br</p>
+                    <p className="text-muted-foreground">comercial3@graficaeleal.com.br</p>
                   </div>
                 </div>
               </div>

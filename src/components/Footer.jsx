@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { Printer, Instagram, Mail, Phone } from 'lucide-react';
-import { asset } from "@/lib/utils/asset.js";
+import { Instagram, Mail, Phone } from 'lucide-react';
+import { asset } from "@/lib/utils/asset.js"; // 1. Importa a função asset
 
-// Dados para os links de navegação, alinhados com o Header
 const navLinks = [
     { title: "Home", href: "/" },
     { title: "Nossos Serviços", href: "/servicos" },
@@ -10,7 +9,6 @@ const navLinks = [
     { title: "Portfólio", href: "/portfolio" },
 ];
 
-// Imagens para a galeria do rodapé
 const portfolioImages = [
   { image: "/portfolio/projeto-1.jpg", alt: "Projeto 1" },
   { image: "/portfolio/projeto-2.jpg", alt: "Projeto 2" },
@@ -30,10 +28,17 @@ export function Footer() {
           
           {/* Coluna 1: Informações da Empresa */}
           <div className="space-y-4 lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <Printer className="h-7 w-7 text-primary" />
-              <span className="text-xl font-bold">Eleal Gráfica & Editora</span>
+            {/* --- INÍCIO DA ALTERAÇÃO --- */}
+            <Link to="/" className="inline-block mb-4">
+              <img 
+                src={asset('/logo.png')}
+                alt="Logomarca da Gráfica Eleal"
+                className="h-14 w-auto" // Ajuste a altura (h-14) se necessário
+                style={{ filter: 'brightness(0) invert(1)' }}
+              />
             </Link>
+            {/* --- FIM DA ALTERAÇÃO --- */}
+            
             <p className="text-muted-foreground">
                 <strong className="text-background/90 block">Endereço:</strong>
                 Rua Senador Alencar, 1689 - Centro, Fortaleza - CE, 60030-051

@@ -4,7 +4,8 @@ import { ContactForm } from "@/components/ContactForm";
 export function Servicos() {
   return (
     <>
-      <ServicesSection />
+      {/* Alteração nesta linha */}
+      <ServicesSection mostrarIconeFlutuante={false} />
 
       <section id="formulario-contato" className="py-16 sm:py-20 lg:py-24 bg-background">
         <div className="container mx-auto px-4">
