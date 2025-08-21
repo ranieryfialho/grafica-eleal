@@ -17,7 +17,7 @@ export function AboutPageContent() {
               <p className="mt-6 text-lg text-muted-foreground">
                 Há mais de 20 anos, a Gráfica Eleal transforma ideias em impressões de qualidade. Somos uma empresa que acredita no poder da boa comunicação, da criatividade e do cuidado em cada detalhe.
               </p>
-              <p className="mt-4 text-muted-foreground">
+              <p className="mt-6 text-lg text-muted-foreground">
                 Nosso compromisso é ir além da impressão. A gente ajuda a contar histórias, fortalecer marcas e dar forma a projetos com significado. Nosso papel é deixar a melhor impressão.
               </p>
             </div>
